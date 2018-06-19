@@ -1,7 +1,7 @@
 language: cpp
 os: osx
 
-sudo: false
+sudo: required
 before_install:
   - brew tap inilabs/inilabs
   - brew update
@@ -13,6 +13,7 @@ compiler:
 install:
 #  - brew install cmake pkg-config libusb
   # - brew install / upgrade boost
+  - set -e
   - brew install opencv
   - brew install libcaer
 #   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
