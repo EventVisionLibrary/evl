@@ -11,10 +11,10 @@ compiler:
   - gcc
 
 install:
-  - brew install cmake pkg-config libusb
+#  - brew install cmake pkg-config libusb
   - brew install boost=1.65
   - brew install opencv
-
+  - brew install libcaer
 #   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
 #   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
 
@@ -23,7 +23,8 @@ script:
   - cd examples
   - mkdir build
   - cd build
-  - cmake .. && make
+  - cmake ..
+  - make
 
 # -- The C compiler identification is AppleClang 8.1.0.8020042
 # -- The CXX compiler identification is AppleClang 8.1.0.8020042
