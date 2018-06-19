@@ -12,7 +12,7 @@ compiler:
 
 install:
 #  - brew install cmake pkg-config libusb
-  - brew install boost=1.65
+  - brew install boost
   - brew install opencv
   - brew install libcaer
 #   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
