@@ -1,0 +1,64 @@
+language: cpp
+
+sudo: false
+# before_install:
+#   - brew install libusb
+#   - sudo apt-get install libcurl4-openssl-dev
+#   - chmod +x installMPG123.sh
+#   - ./installMPG123.sh
+
+# Compiler selection
+compiler:
+  - gcc
+
+# install:
+#   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
+#   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
+
+# Build steps
+script:
+  - cd examples
+  - mkdir build
+  - cd build
+  - cmake .. && make
+
+# -- The C compiler identification is AppleClang 8.1.0.8020042
+# -- The CXX compiler identification is AppleClang 8.1.0.8020042
+# -- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc
+# -- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc -- works
+# -- Detecting C compiler ABI info
+# -- Detecting C compiler ABI info - done
+# -- Detecting C compile features
+# -- Detecting C compile features - done
+# -- Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
+# -- Check for working CXX compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ -- works
+# -- Detecting CXX compiler ABI info
+# -- Detecting CXX compiler ABI info - done
+# -- Detecting CXX compile features
+# -- Detecting CXX compile features - done
+# -- Boost version: 1.67.0
+# -- Found OpenCV: /usr/local/Cellar/opencv/3.4.1_5 (found version "3.4.1")
+# -- Found PkgConfig: /usr/local/bin/pkg-config (found version "0.29.2")
+# -- Checking for module 'libcaer'
+# --   Found libcaer, version 2.4.2
+# found libcaer
+# found EVL
+# include directory of EVL is
+# /Users/shintaro/work/evl/src
+# source of EVL is
+# /Users/shintaro/work/evl/src/evl/core/davisio.hpp/Users/shintaro/work/evl/src/evl/core/shutdown.hpp/Users/shintaro/work/evl/src/evl/core/types.hpp/Users/shintaro/work/evl/src/evl/core/davisio.cpp/Users/shintaro/work/evl/src/evl/core/shutdown.cpp/Users/shintaro/work/evl/src/evl/imgproc/detection.hpp/Users/shintaro/work/evl/src/evl/imgproc/detection.cpp
+# -- Boost version: 1.67.0
+# found libcaer
+# -- Boost version: 1.67.0
+# found libcaer
+# -- Boost version: 1.67.0
+# found libcaer
+# -- Boost version: 1.67.0
+# found libcaer
+# -- Found OpenGL: /System/Library/Frameworks/OpenGL.framework
+# -- Found GLUT: /System/Library/Frameworks/GLUT.framework
+# -- Boost version: 1.67.0
+# found libcaer
+# -- Configuring done
+# -- Generating done
+# -- Build files have been written to: /Users/shintaro/work/evl/examples/build
