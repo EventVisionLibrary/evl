@@ -9,7 +9,7 @@ before_install:
   - sudo rvm get head
   - brew tap inilabs/inilabs
   - brew update
-  - /usr/bin/yes | pip uninstall numpy;
+  # - /usr/bin/yes | pip uninstall numpy;
 # Compiler selection
 compiler:
   - g++
@@ -17,7 +17,8 @@ compiler:
 install:
 #  - brew install cmake pkg-config libusb
   # - brew install / upgrade boost
-  - set -e
+  # - set -e
+  - unset -f cd
   - brew install opencv
   - brew install libcaer
 #   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
