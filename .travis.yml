@@ -5,6 +5,7 @@ env: CXX=g++ PYTHON=python CXXFLAGS=-std=c++11
 
 sudo: required
 before_install:
+  - rvm get head
   - brew tap inilabs/inilabs
   - brew update
   - /usr/bin/yes | pip uninstall numpy;
@@ -16,7 +17,7 @@ install:
 #  - brew install cmake pkg-config libusb
   # - brew install / upgrade boost
   - set -e
-#  - brew install opencv
+  - brew install opencv
   - brew install libcaer
 #   - DEPS_DIR="${TRAVIS_BUILD_DIR}/deps"
 #   - mkdir ${DEPS_DIR} && cd ${DEPS_DIR}
