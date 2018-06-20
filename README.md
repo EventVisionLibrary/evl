@@ -1,5 +1,7 @@
 # Event Vision Library (EVL)
 
+[![Build Status](https://travis-ci.org/EventVisionLibrary/evl?branch=develop/issue/6)](https://travis-ci.org/EventVisionLibrary/evl)
+
 Open Source Computer Vision Library for Event data.
 
 ## Supported devices
@@ -57,5 +59,5 @@ Please read the [contribution guidelines] before starting work on a pull request
 ## License
 
 BSD 3-clause License. See [detail](https://github.com/EventVisionLibrary/evl/blob/master/LICENSE).
-    
+
 2018, Event Vision Library.
