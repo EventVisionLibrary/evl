@@ -5,7 +5,8 @@ env: CXX=g++ PYTHON=python CXXFLAGS=-std=c++11
 
 sudo: required
 before_install:
-  - rvm get head
+  - sudo command curl -sSL https://rvm.io/mpapis.asc | sudo gpg --import -
+  - sudo rvm get head
   - brew tap inilabs/inilabs
   - brew update
   - /usr/bin/yes | pip uninstall numpy;
