@@ -21,6 +21,7 @@ We are now preparing for Windows OS support. Stay tuned, or contribute!
 ### Requirements
 
 * C++11
+* CMake >= 3.1
 * `OpenCV`: [Link](https://opencv.org/)
 * `Boost >= 1.65`: `brew install boost` [Link](https://www.boost.org/)
 * `libcaer >= 2`: `brew install libcaer` [Link](https://github.com/inilabs/libcaer)
@@ -29,7 +30,7 @@ We are now preparing for Windows OS support. Stay tuned, or contribute!
 
 ```
 $ git clone https://github.com/EventVisionLibrary/evl.git
-$ cd example
+$ cd examples
 $ mkdir build
 $ cd build
 $ cmake ..
@@ -57,5 +58,5 @@ Please read the [contribution guidelines] before starting work on a pull request
 ## License
 
 BSD 3-clause License. See [detail](https://github.com/EventVisionLibrary/evl/blob/master/LICENSE).
-    
+
 2018, Event Vision Library.
