@@ -1,5 +1,6 @@
-#ifndef EVL_CORE_DAVISIO_hpp_
-#define EVL_CORE_DAVISIO_hpp_
+// Copyright 2018 Event Vision Library.
+#ifndef SRC_EVL_CORE_DAVISIO_HPP_
+#define SRC_EVL_CORE_DAVISIO_HPP_
 
 #include <mutex>
 #include <vector>
@@ -10,7 +11,7 @@
 
 extern std::mutex mtx;
 
-void disp(EventTuple x );
+void disp(EventTuple x);
 
 libcaer::devices::davis initializeDavis(void);
 
@@ -22,4 +23,4 @@ std::vector<EventTuple> readBufferOnNumber(EventBuffer *buffer, int number);
 
 void loop_readData(EventBuffer *buffer, int lifetime);
 
-#endif // EVL_CORE_DAVISIO_hpp_
+#endif  // SRC_EVL_CORE_DAVISIO_HPP_

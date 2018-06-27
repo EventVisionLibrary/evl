@@ -1,3 +1,4 @@
+// Copyright 2018 Event Vision Library.
 #include <string>
 #include <iostream>
 #include <thread>
@@ -14,7 +15,7 @@
 #include <evl/core/shutdown.hpp>
 #include <evl/core/davisio.hpp>
 
-int main(){
+int main() {
     int lifetime = 2000;     // micro sec
     int buffersize = 50000;
     EventBuffer buffer(buffersize);

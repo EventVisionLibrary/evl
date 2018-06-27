@@ -1,3 +1,4 @@
+// Copyright 2018 Event Vision Library.
 #include <string>
 #include <iostream>
 #include <thread>
@@ -32,7 +33,7 @@
 #define GL_WINDOW_WIDTH 1200
 #define GL_WINDOW_HEIGHT 800
 
-cv::Rect roi(50, 100, 150, 80); //(x, y, w, h), 最初だけ決め打ち
+cv::Rect roi(50, 100, 150, 80);  // (x, y, w, h), initialized
 cv::Point vertex(50, 100);
 
 int lifetime = 10000;     // micro sec
@@ -48,29 +49,28 @@ void setup(void) {
 
     glEnable(GL_POINT_SMOOTH);
     glEnable(GL_LINE_SMOOTH);
-    glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);	// Make round points, not square points
-    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);		// Antialias the lines
- }
+    glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);  // Make round (not square) points
+    glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);   // Antialias the lines
+}
 
 
-void draw(void){
-    
+void draw(void) {
     glClear(GL_COLOR_BUFFER_BIT);
     std::vector<EventTuple> v = readBufferOnLifetime(&buffer, lifetime);
     detect_rod_tip(v, &roi, &vertex);
 
     glColor3f(1.0, 0.0, 0.0);
 
-    float x = (vertex.x/float(CAM_WIDTH)*2.0 - 1.0);
-    float y = -(vertex.y/float(CAM_HEIGHT)*2.0 - 1.0);
+    float x = (vertex.x / static_cast<float>(CAM_WIDTH) * 2.0 - 1.0);
+    float y = -(vertex.y / static_cast<float>(CAM_HEIGHT) * 2.0 - 1.0);
 
     glBegin(GL_LINES);
     glVertex2f(x,  -1.0);
     glVertex2f(x, 1.0);
     glEnd();
     glBegin(GL_LINES);
-    glVertex2f( -1.0, y);
-    glVertex2f( 1.0, y);
+    glVertex2f(-1.0, y);
+    glVertex2f(1.0, y);
     glEnd();
     /*
     float d = 0.01;
@@ -86,14 +86,13 @@ void draw(void){
     glutPostRedisplay();
 }
 
-int initGlutDisplay(int argc, char* argv[]){
-
+int initGlutDisplay(int argc, char* argv[]) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
     glutInitWindowPosition(0, 0);
-    glutInitWindowSize(GL_WINDOW_WIDTH,GL_WINDOW_HEIGHT);
+    glutInitWindowSize(GL_WINDOW_WIDTH, GL_WINDOW_HEIGHT);
     glutCreateWindow("display");
-    //glutReshapeFunc(resize);
+    // glutReshapeFunc(resize);
     glutDisplayFunc(draw);
     setup();
 
@@ -102,14 +101,8 @@ int initGlutDisplay(int argc, char* argv[]){
 }
 
 int main(int argc, char * argv[]) {
-
-
     std::thread t1(bufferData, &buffer);
-
     initGlutDisplay(argc, argv);
-
     t1.join();
-
     return 1;
 }
-

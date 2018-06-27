@@ -1,26 +1,27 @@
-#include <libcaercpp/libcaer.hpp>
+// Copyright 2018 Event Vision Library.
+#include "shutdown.hpp"
 
 #include <atomic>
 #include <csignal>
 #include <cstddef>
-
-#include "shutdown.hpp"
+#include <libcaercpp/libcaer.hpp>
 
 std::atomic_bool Shutdown::globalShutdown(false);
 
 void Shutdown::globalShutdownSignalHandler(int signal) {
-    // Simply set the running flag to false on SIGTERM and SIGINT (CTRL+C) for global shutdown.
+    // Simply set the running flag to false
+    // on SIGTERM and SIGINT (CTRL+C) for global shutdown.
     if (signal == SIGTERM || signal == SIGINT) {
         Shutdown::globalShutdown.store(true);
     }
 }
 
 void Shutdown::usbShutdownHandler(void *ptr) {
-    (void)(ptr); // UNUSED.
+    (void)(ptr);      // UNUSED.
     Shutdown::globalShutdown.store(true);
 }
 
-int Shutdown::setSigHandler(){
+int Shutdown::setSigHandler() {
 // Install signal handler for global shutdown.
 #if defined(_WIN32)
     if (signal(SIGTERM, globalShutdownSignalHandler) == SIG_ERR) {
