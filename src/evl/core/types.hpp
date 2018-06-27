@@ -4,8 +4,12 @@
 
 #include <tuple>
 #include <boost/circular_buffer.hpp>
+#include <libcaercpp/libcaer.hpp>
+#include <libcaercpp/devices/davis.hpp>
 
 typedef std::tuple<int32_t, uint16_t, uint16_t, bool> EventTuple;
 typedef boost::circular_buffer<EventTuple> EventBuffer;
+typedef libcaer::events::PolarityEventPacket EventPolarity;
+typedef libcaer::devices::davis Davis;
 
 #endif   // SRC_EVL_CORE_TYPES_HPP_

@@ -22,9 +22,9 @@ void disp(EventTuple x ) {
     std::get<3>(x) << std::endl;
 }
 
-libcaer::devices::davis initializeDavis(void) {
+Davis initializeDavis(void) {
     // Open a DAVIS (ID of 1)
-    libcaer::devices::davis davisHandle = libcaer::devices::davis(1);
+    Davis davisHandle = Davis(1);
 
     // Device information
     struct caer_davis_info davis_info = davisHandle.infoGet();
@@ -62,7 +62,7 @@ libcaer::devices::davis initializeDavis(void) {
 }
 
 void bufferData(EventBuffer *buffer) {
-    libcaer::devices::davis davisHandle = initializeDavis();
+    Davis davisHandle = initializeDavis();
     davisHandle.dataStart(nullptr, nullptr, nullptr,
       &Shutdown::usbShutdownHandler, nullptr);
 
@@ -84,10 +84,8 @@ void bufferData(EventBuffer *buffer) {
             }
 
             if (packet->getEventType() == POLARITY_EVENT) {
-                std::shared_ptr<const
-                libcaer::events::PolarityEventPacket> polarity = \
-                std::static_pointer_cast<
-                libcaer::events::PolarityEventPacket>(packet);
+                std::shared_ptr<const EventPolarity> polarity = \
+                std::static_pointer_cast<EventPolarity>(packet);
 
                 mtx.lock();
                 for (auto &event : *polarity) {

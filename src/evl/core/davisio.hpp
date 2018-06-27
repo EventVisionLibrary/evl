@@ -13,8 +13,7 @@ extern std::mutex mtx;
 
 void disp(EventTuple x);
 
-libcaer::devices::davis initializeDavis(void);
-
+Davis initializeDavis(void);
 void bufferData(EventBuffer *buffer);
 
 std::vector<EventTuple> readBufferOnLifetime(EventBuffer *buffer, int lifetime);

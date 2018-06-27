@@ -135,7 +135,7 @@ void load_csv(std::vector<EventTuple> *v, int i) {
     FILE *fp;
     int ret;
     char fname[1000];
-    snprintf(fname, "../../../sample_data/tsue_batch/%d.csv", i);
+    sprintf(fname, "../../../sample_data/tsue_batch/%d.csv", i);
     fp = fopen(fname, "r");
     if (fp == NULL) {
         printf("%sThe file cannot be opened!\n", fname);

@@ -5,6 +5,7 @@
 #include <vector>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+#include "../core/types.hpp"
 #define W 240
 #define H 180
 
