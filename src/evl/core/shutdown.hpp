@@ -1,11 +1,11 @@
-#ifndef EVL_CORE_SHUTDOWN_hpp_
-#define EVL_CORE_SHUTDOWN_hpp_
+// Copyright 2018 Event Vision Library.
+#ifndef SRC_EVL_CORE_SHUTDOWN_HPP_
+#define SRC_EVL_CORE_SHUTDOWN_HPP_
 
 #include <atomic>
 
-class Shutdown
-{
-public:
+class Shutdown {
+ public:
     static std::atomic_bool globalShutdown;
 
     static void globalShutdownSignalHandler(int signal);
@@ -15,4 +15,4 @@ public:
     int setSigHandler();
 };
 
-#endif // EVL_CORE_SHUTDOWN_hpp_
+#endif    // SRC_EVL_CORE_SHUTDOWN_HPP_
