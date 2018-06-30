@@ -18,7 +18,9 @@
 
 #include <evl/core/types.hpp>
 #include <evl/core/shutdown.hpp>
-#include <evl/core/davisio.hpp>
+#include <evl/core/buffer_davis.hpp>
+#include <evl/core/read_buffer.hpp>
+
 #include <evl/imgproc/detection.hpp>
 
 #define W 240
