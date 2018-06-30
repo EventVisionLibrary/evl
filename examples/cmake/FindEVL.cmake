@@ -7,7 +7,7 @@
 
 if(NOT EVL_FOUND)
 
-FIND_PATH(EVL_INCLUDE_DIRS evl/evl.h
+FIND_PATH(EVL_INCLUDE_DIRS evl/evl.hpp
    ${PROJECT_SOURCE_DIR}/../src
    ${PROJECT_SOURCE_DIR}/../../src
    ${PROJECT_SOURCE_DIR}/../../../src
@@ -29,7 +29,7 @@ if(EVL_INCLUDE_DIRS)
         ${EVL_INCLUDE_DIRS}/evl/imgproc/*.cpp
    )
    set(EVL_SOURCES
-	${EVL_CORE_SOURCES} 
+	${EVL_CORE_SOURCES}
 	${EVL_IMGPROC_SOURCES}
     )
    message("source of EVL is")
