@@ -1,12 +1,5 @@
 // Copyright 2018 Event Vision Library.
 #include "detection.hpp"
-#include <time.h>
-#include <cstdio>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <tuple>
 #include <vector>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>

@@ -25,8 +25,8 @@ void bufferData(EventBuffer *buffer, char* fname) {
     double ts; double x; double y;
     double pol_raw; bool pol;
 
-    while ((ret = fscanf(fp, "%lf,%lf,%lf,%lf", &ts, &x, &y, &pol_raw)) != EOF) {
-    // while ((ret = fscanf(fp, "%u,%hu,%hu,%d", &ts, &x, &y, &pol_raw)) != EOF) {
+    while ((ret=fscanf(fp, "%lf,%lf,%lf,%lf", &ts, &x, &y, &pol_raw)) != EOF) {
+    // while ((ret=fscanf(fp, "%u,%hu,%hu,%d", &ts, &x, &y, &pol_raw)) != EOF) {
         pol = static_cast<bool>(pol_raw);
         usleep(100);
         mtx.lock();

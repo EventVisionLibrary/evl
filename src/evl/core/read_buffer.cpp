@@ -64,6 +64,7 @@ std::vector<EventTuple> readBufferOnNumber(EventBuffer *buffer, int number) {
     return v;
 }
 
+// example
 void loop_readData(EventBuffer *buffer, int lifetime) {
     usleep(100000);      // micro sec
     while (1) {
