@@ -2,18 +2,10 @@
 #ifndef SRC_EVL_CORE_DAVISIO_HPP_
 #define SRC_EVL_CORE_DAVISIO_HPP_
 
-#include <mutex>
 #include <vector>
-#include <libcaercpp/libcaer.hpp>
-#include <libcaercpp/devices/davis.hpp>
-
 #include "types.hpp"
 
-extern std::mutex mtx;
-
-void disp(EventTuple x);
-
-void bufferData(EventBuffer *buffer);
+void disp_event(EventTuple x);
 
 std::vector<EventTuple> readBufferOnLifetime(EventBuffer *buffer, int lifetime);
 
