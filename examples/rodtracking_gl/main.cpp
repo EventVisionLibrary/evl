@@ -1,11 +1,7 @@
 // Copyright 2018 Event Vision Library.
-#include <string>
 #include <iostream>
 #include <thread>
 #include <vector>
-#include <mutex>
-#include <deque>
-#include <tuple>
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -13,12 +9,9 @@
 
 #include "unistd.h"
 
-#include <libcaercpp/libcaer.hpp>
-#include <libcaercpp/devices/davis.hpp>
-
 #include <evl/core/types.hpp>
-#include <evl/core/shutdown.hpp>
-#include <evl/core/davisio.hpp>
+#include <evl/core/buffer_davis.hpp>
+#include <evl/core/read_buffer.hpp>
 #include <evl/imgproc/detection.hpp>
 
 #ifdef __APPLE__
