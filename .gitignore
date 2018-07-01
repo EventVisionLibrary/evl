@@ -1,2 +1,4 @@
 *.DS_Store
 examples/build/*
+data/*
+!data/.gitkeep

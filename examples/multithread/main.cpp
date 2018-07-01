@@ -1,18 +1,13 @@
 // Copyright 2018 Event Vision Library.
-#include <string>
 #include <iostream>
 #include <thread>
 #include <vector>
 #include <mutex>
-#include <deque>
 #include <tuple>
 
 #include <boost/circular_buffer.hpp>
 #include "unistd.h"
 #include <evl/core/types.hpp>
-
-// typedef std::tuple<int32_t, uint16_t, uint16_t, bool> EventTuple;
-// typedef boost::circular_buffer<EventTuple> EventBuffer;
 
 std::mutex test_mtx;
 
