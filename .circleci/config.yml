@@ -6,7 +6,7 @@ jobs:
 
     steps:
       - checkout
-      - run: apt-get update && apt-get upgrade
+      - run: apt-get update
       - run:
           name: Install dependencies
           command: apt-get install -y git cmake libusb-dev libusb-1.0-0-dev libboost-all-dev && apt-get update && bash install_dependencies.sh
