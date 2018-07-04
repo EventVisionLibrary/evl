@@ -6,7 +6,7 @@ jobs:
 
     steps:
       - checkout
-      - run: apt-get update && DEBIAN_FRONTEND=noninteractive
+      - run: apt-get update && ENV DEBIAN_FRONTEND=noninteractive
       - run:
           name: Install dependencies
           command: apt-get install -y git tzdata cmake libusb-dev libusb-1.0-0-dev libboost-all-dev libopencv-dev && apt-get update && bash install_dependencies.sh
