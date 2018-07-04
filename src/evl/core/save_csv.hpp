@@ -1,13 +1,11 @@
-//
-// Created by hide on 18/07/01.
-//
+// Copyright 2018 Event Vision Library
 
-#ifndef EVL_SAVE_CSV_H
-#define EVL_SAVE_CSV_H
+#ifndef SRC_EVL_CORE_SAVE_CSV_HPP_
+#define SRC_EVL_CORE_SAVE_CSV_HPP_
 
 #include "types.hpp"
 
 void loop_saveData(EventBuffer *buffer, int lifetime);
 
 
-#endif //EVL_SAVE_CSV_H
+#endif  // SRC_EVL_CORE_SAVE_CSV_HPP_

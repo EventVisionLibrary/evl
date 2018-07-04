@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(buffer_csv)
+project(save_csv)
 
 include("../CMakeLists.shared")
 
