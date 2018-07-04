@@ -1,4 +1,4 @@
-# Event Vision Library (EVL)     [![Build Status](https://travis-ci.org/EventVisionLibrary/evl.svg?branch=develop%2Fissue%2F6)](https://travis-ci.org/EventVisionLibrary/evl)
+# Event Vision Library (EVL)     [![Build Status](https://travis-ci.org/EventVisionLibrary/evl.svg?branch=develop)](https://travis-ci.org/EventVisionLibrary/evl)
 
 Open Source Computer Vision Library for Event data.
 
