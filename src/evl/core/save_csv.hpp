@@ -7,7 +7,7 @@
 
 #include "types.hpp"
 
-void saveData(EventBuffer *buffer, char* fname);
+void loop_saveData(EventBuffer *buffer, int lifetime);
 
 
 #endif //EVL_SAVE_CSV_H
