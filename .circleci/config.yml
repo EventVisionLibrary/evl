@@ -9,7 +9,7 @@ jobs:
       - run: apt-get update
       - run:
           name: Install dependencies
-          command: apt-get install -y git cmake libusb-dev && bash install_dependencies.sh && apt-get install -y libboost-all-dev
+          command: apt-get install -y git cmake libusb-dev libboost-all-dev && bash install_dependencies.sh
       - run:
           name: Build
           command: cd examples; mkdir build; cd build; cmake ..; make
