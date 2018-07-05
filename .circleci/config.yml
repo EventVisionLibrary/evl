@@ -9,10 +9,19 @@ jobs:
       - run: apt-get update && apt-get install -y sudo && export DEBIAN_FRONTEND=noninteractive && sudo -E apt-get update &&  sudo -E apt-get install -y -qq tzdata
       - run:
           name: Install prerequists
-          command: sudo -E apt-get install -y -qq git cmake libusb-dev libusb-1.0-0-dev libboost-all-dev libopencv-dev libglu1-mesa-dev freeglut3-dev mesa-common-dev && sudo -E apt-get update
+          command: sudo -E apt-get install -y -qq git cmake libusb-dev libusb-1.0-0-dev
+      - run:
+          name: Install Boost
+          command: sudo -E apt-get install -y -qq libboost-all-dev
+      - run:
+          name: Install OpenCV
+          command: sudo -E apt-get install -y -qq libopencv-dev
+      - run:
+          name: Install OpenGL
+          command: sudo -E apt-get install -y -qq libglu1-mesa-dev freeglut3-dev mesa-common-dev
       - run:
           name: Install dependencies
-          command: bash install_dependencies.sh
+          command: sudo -E apt-get update && bash install_dependencies.sh
       - run:
           name: Build
           command: cd examples; mkdir build; cd build; cmake ..; make
