@@ -2,16 +2,16 @@
 #include <iostream>
 #include <tuple>
 #include <fstream>
-#include "unistd.h"
+#include <string>
+#include <vector>
 #include "types.hpp"
 #include "common.hpp"
 #include "read_buffer.hpp"
 #include "save_csv.hpp"
 
 
-void loop_saveData(EventBuffer *buffer, int lifetime) {
+void loop_saveData(EventBuffer *buffer, int lifetime, std::string filename) {
     usleep(100000);      // micro sec
-    std::string filename = "test.txt";
     std::ofstream writing_file;
     writing_file.open(filename);
 
