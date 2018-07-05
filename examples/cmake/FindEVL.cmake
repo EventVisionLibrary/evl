@@ -28,9 +28,15 @@ if(EVL_INCLUDE_DIRS)
         ${EVL_INCLUDE_DIRS}/evl/imgproc/*.hpp
         ${EVL_INCLUDE_DIRS}/evl/imgproc/*.cpp
    )
+   file(GLOB EVL_UTILS_SOURCES
+        ${EVL_INCLUDE_DIRS}/evl/utils/*.h
+        ${EVL_INCLUDE_DIRS}/evl/utils/*.hpp
+        ${EVL_INCLUDE_DIRS}/evl/utils/*.cpp
+   )
    set(EVL_SOURCES
 	${EVL_CORE_SOURCES}
 	${EVL_IMGPROC_SOURCES}
+    ${EVL_UTILS_SOURCES}
     )
    message("source of EVL is")
    message(${EVL_SOURCES})
