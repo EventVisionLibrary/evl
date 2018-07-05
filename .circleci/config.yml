@@ -6,10 +6,10 @@ jobs:
 
     steps:
       - checkout
-      - run: apt-get update && apt-get install -y sudo && export DEBIAN_FRONTEND=noninteractive && sudo -E apt-get update
+      - run: apt-get update && apt-get install -y sudo && export DEBIAN_FRONTEND=noninteractive && sudo -E apt-get update &&  sudo -E apt-get install -y -qq tzdata
       - run:
           name: Install dependencies
-          command: sudo -E apt-get install -yq git cmake libusb-dev libusb-1.0-0-dev libboost-all-dev libopencv-dev && sudo -E apt-get update && bash install_dependencies.sh
+          command: sudo -E apt-get install -y -qq git cmake libusb-dev libusb-1.0-0-dev libboost-all-dev libopencv-dev && sudo -E apt-get update && bash install_dependencies.sh
       - run:
           name: Build
           command: cd examples; mkdir build; cd build; cmake ..; make
