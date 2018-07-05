@@ -1,4 +1,5 @@
 # Event Vision Library (EVL)
+[![CircleCI](https://circleci.com/gh/EventVisionLibrary/evl/tree/develop.svg?style=svg)](https://circleci.com/gh/EventVisionLibrary/evl/tree/develop)
 
 Open Source Computer Vision Library for Event data.
 
