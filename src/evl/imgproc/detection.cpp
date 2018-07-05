@@ -1,12 +1,5 @@
 // Copyright 2018 Event Vision Library.
 #include "detection.hpp"
-#include <time.h>
-#include <cstdio>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
-#include <tuple>
 #include <vector>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
@@ -130,34 +123,3 @@ void detect_rod_tip(std::vector<EventTuple> v,
     // cv::rectangle(filtered, *roi, 255, 2);
     return;
 }
-
-void load_csv(std::vector<EventTuple> *v, int i) {
-    FILE *fp;
-    int ret;
-    char fname[1000];
-    sprintf(fname, "../../../sample_data/tsue_batch/%d.csv", i);
-    fp = fopen(fname, "r");
-    if (fp == NULL) {
-        printf("%sThe file cannot be opened!\n", fname);
-        return;
-    }
-
-    uint32_t ts; uint16_t x; uint16_t y;
-    int pol_raw; bool pol;
-    while ((ret = fscanf(fp, "%u,%hu,%hu,%d", &ts, &x, &y, &pol_raw)) != EOF) {
-        pol = static_cast<bool>(pol_raw);
-        (*v).push_back(std::make_tuple(ts, x, y, pol));
-    }
-    fclose(fp);
-}
-
-// int main()
-// {
-//    cv::Rect roi(50, 100, 150, 80); //(x, y, w, h), 最初だけ決め打ち
-//    for (int i=0; i<50; i++) {
-//        std::vector<EventTuple> v;
-//        load_csv(&v, i);
-//        detect_rod_tip(v, &roi);
-//    }
-//    return 1;
-// }
