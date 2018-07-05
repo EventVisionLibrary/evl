@@ -1,5 +1,4 @@
 // Copyright 2018 Event Vision Library.
-#include <iostream>
 #include <vector>
 #include <mutex>
 #include "unistd.h"     //  for sleep function
@@ -12,11 +11,6 @@
 
 std::mutex mtx;
 
-void disp_event(EventTuple x ) {
-    std::cout << ' ' << std::get<0>(x) << ' ' << \
-    std::get<1>(x) << ' ' << std::get<2>(x) << ' ' << \
-    std::get<3>(x) << std::endl;
-}
 
 std::vector<EventTuple> readBufferOnLifetime(EventBuffer *buffer,
   int lifetime) {
@@ -62,18 +56,4 @@ std::vector<EventTuple> readBufferOnNumber(EventBuffer *buffer, int number) {
     }
     mtx.unlock();
     return v;
-}
-
-// example
-void loop_readData(EventBuffer *buffer, int lifetime) {
-    usleep(100000);      // micro sec
-    while (1) {
-        usleep(100000);      // micro sec. calling frequency
-        std::vector<EventTuple> v = readBufferOnLifetime(buffer, lifetime);
-
-        std::cout << "[Thread2] DATA READING =============" << std::endl;
-        std::cout << "[Thread2] Lifetime >>> " << lifetime << std::endl;
-        std::for_each((v).begin(), (v).end(), disp_event);
-        std::cout << "[Thread2] DATA READ DONE ===========" << std::endl;
-    }
 }
