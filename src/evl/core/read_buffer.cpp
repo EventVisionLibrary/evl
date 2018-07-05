@@ -73,7 +73,7 @@ void loop_readData(EventBuffer *buffer, int lifetime) {
 
         std::cout << "[Thread2] DATA READING =============" << std::endl;
         std::cout << "[Thread2] Lifetime >>> " << lifetime << std::endl;
-        std::for_each((v).begin(), (v).end(), disp_event);
+        std::for_each((v).rbegin(), (v).rend(), disp_event);
         std::cout << "[Thread2] DATA READ DONE ===========" << std::endl;
     }
 }
