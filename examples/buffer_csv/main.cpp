@@ -40,7 +40,7 @@ int main() {
     EventBuffer buffer(buffersize);
     char fname[] = "../../data/sample.csv";
     std::thread t1(bufferData, &buffer, fname);
-    //loop_readData(&buffer, lifetime);
+    // loop_readData(&buffer, lifetime);
     loop_readImage(&buffer, lifetime);
     t1.join();
     return 0;

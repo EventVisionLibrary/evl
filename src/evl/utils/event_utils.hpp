@@ -2,11 +2,12 @@
 #ifndef SRC_EVL_UTILS_EVENT_UTILS_HPP_
 #define SRC_EVL_UTILS_EVENT_UTILS_HPP_
 
+#include <vector>
 #include <opencv2/core/core.hpp>
 
 #include <evl/core/types.hpp>
 
-void disp_event(EventTuple x); 
+void disp_event(EventTuple x);
 
 cv::Mat events_to_mat(std::vector<EventTuple> events);
 
