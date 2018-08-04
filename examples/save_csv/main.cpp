@@ -7,12 +7,12 @@
 int main() {
     int lifetime = 1000;     // micro sec
     int buffersize = 50000;
-    EventBuffer buffer(buffersize);
+    evl::EventBuffer buffer(buffersize);
     char fname[] = "../../data/7.csv";
     std::string filename = "test.txt";
 
-    std::thread t1(bufferData, &buffer, fname);
-    std::thread t2(loop_saveData, &buffer, lifetime, filename);
+    std::thread t1(evl::bufferData, &buffer, fname);
+    std::thread t2(evl::loop_saveData, &buffer, lifetime, filename);
 
     t1.join();
     t2.join();

@@ -55,13 +55,13 @@ int main(void) {
         caerBiasCoarseFineParse(prsfBias).fineValue);
 
     davisHandle.dataStart(nullptr, nullptr, nullptr,
-      &Shutdown::usbShutdownHandler, nullptr);
+      &evl::Shutdown::usbShutdownHandler, nullptr);
 
     // Let's turn on blocking data-get mode to avoid wasting resources.
     davisHandle.configSet(CAER_HOST_CONFIG_DATAEXCHANGE,
       CAER_HOST_CONFIG_DATAEXCHANGE_BLOCKING, true);
 
-    while (!Shutdown::globalShutdown.load(std::memory_order_relaxed)) {
+    while (!evl::Shutdown::globalShutdown.load(std::memory_order_relaxed)) {
         std::unique_ptr<libcaer::events::EventPacketContainer> \
         packetContainer = davisHandle.dataGet();
         if (packetContainer == nullptr) {

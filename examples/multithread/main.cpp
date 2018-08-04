@@ -11,13 +11,13 @@
 
 std::mutex test_mtx;
 
-void disp_(EventTuple x ) {
+void disp_(evl::EventTuple x ) {
     std::cout << std::get<0>(x) << ' ' << \
     std::get<1>(x) << ' ' << std::get<2>(x) << std::endl;
 }
 
 // TUPLE VERSION
-void loop_task3(EventBuffer *buffer) {
+void loop_task3(evl::EventBuffer *buffer) {
     // int i = 0;
     int32_t _ts = 0;
     uint16_t _x = 100;
@@ -25,7 +25,7 @@ void loop_task3(EventBuffer *buffer) {
     bool _pol = true;
     while (1) {
         usleep(2);
-        EventTuple tup = std::make_tuple(_ts, _x, _y, _pol);
+        evl::EventTuple tup = std::make_tuple(_ts, _x, _y, _pol);
         test_mtx.lock();
         (*buffer).push_front(tup);
         _ts += 1;
@@ -33,16 +33,16 @@ void loop_task3(EventBuffer *buffer) {
     }
 }
 
-std::vector<EventTuple> readLifetimeData(EventBuffer *buffer, int lifetime) {
-    std::vector<EventTuple> v;
+std::vector<evl::EventTuple> readLifetimeData(evl::EventBuffer *buffer, int lifetime) {
+    std::vector<evl::EventTuple> v;
     test_mtx.lock();
 
-    EventTuple tup = (*buffer).front();    // get first element
+    evl::EventTuple tup = (*buffer).front();    // get first element
     int starttime = std::get<0>(tup);
     (*buffer).pop_front();                  // remove first element
     v.push_back(tup);
     for (int i = 0; i < (*buffer).size(); i++) {
-        EventTuple tup = (*buffer).front();    // get first element
+        evl::EventTuple tup = (*buffer).front();    // get first element
         if (std::get<0>(tup) > starttime - lifetime) {
             (*buffer).pop_front();                  // remove first element
             v.push_back(tup);
@@ -54,10 +54,10 @@ std::vector<EventTuple> readLifetimeData(EventBuffer *buffer, int lifetime) {
     return v;
 }
 
-void loop_task4(EventBuffer *buffer, int lifetime) {
+void loop_task4(evl::EventBuffer *buffer, int lifetime) {
     for (int i = 0; i < 10000; i++) {
         usleep(100000);      // micro sec
-        std::vector<EventTuple> v = readLifetimeData(buffer, lifetime);
+        std::vector<evl::EventTuple> v = readLifetimeData(buffer, lifetime);
 
         std::cout << "[Thread2] DATA READING =============" << std::endl;
         std::cout << "[Thread2] Lifetime >>> " << lifetime << std::endl;
@@ -69,7 +69,7 @@ void loop_task4(EventBuffer *buffer, int lifetime) {
 
 int main() {
     int lifetime = 100;
-    EventBuffer buffer(50000);
+    evl::EventBuffer buffer(50000);
 
     // std::thread t1(loop_task1, &ts, &x, &y, &pol);
     std::thread t1(loop_task3, &buffer);
