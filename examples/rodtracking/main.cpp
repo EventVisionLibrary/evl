@@ -18,7 +18,7 @@
 #define W 240
 #define H 180
 
-void loop_detectRod(EventBuffer *buffer, int lifetime) {
+void loop_detectRod(evl::EventBuffer *buffer, int lifetime) {
     cv::Rect roi(50, 100, 150, 80);  // (x, y, w, h), initialized here
     cv::Point vertex(50, 100);
     cv::namedWindow("filtered", 1);
@@ -29,8 +29,8 @@ void loop_detectRod(EventBuffer *buffer, int lifetime) {
         usleep(1);      // micro sec. calling frequency
         filtered = cv::Mat::zeros(filtered.size(), filtered.type());
 
-        std::vector<EventTuple> v = readBufferOnLifetime(buffer, lifetime);
-        detect_rod_tip(v, &roi, &vertex);
+        std::vector<evl::EventTuple> v = evl::readBufferOnLifetime(buffer, lifetime);
+        evl::detect_rod_tip(v, &roi, &vertex);
         cv::line(filtered, cv::Point(vertex.x, 0),
           cv::Point(vertex.x, H), 255, 1);
         cv::line(filtered, cv::Point(0, vertex.y),
@@ -47,10 +47,10 @@ void loop_detectRod(EventBuffer *buffer, int lifetime) {
 int main() {
     int lifetime = 10000;     // micro sec
     int buffersize = 50000;
-    EventBuffer buffer(buffersize);
+    evl::EventBuffer buffer(buffersize);
 
     std::cout << "version "<< CV_VERSION << std::endl;
-    std::thread t1(bufferData, &buffer);
+    std::thread t1(evl::bufferData, &buffer);
     loop_detectRod(&buffer, lifetime);
     t1.join();
     // cv::waitKey(100);

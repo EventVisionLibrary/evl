@@ -4,6 +4,8 @@
 
 #include "types.hpp"
 
-void bufferData(EventBuffer *buffer);
+namespace evl {
+  void bufferData(EventBuffer *buffer);
+}  // namespace evl
 
 #endif  // SRC_EVL_CORE_BUFFER_DAVIS_HPP_

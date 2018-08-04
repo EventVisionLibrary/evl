@@ -4,6 +4,8 @@
 
 #include "types.hpp"
 
-void bufferData(EventBuffer *buffer, char* fname);
+namespace evl {
+  void bufferData(EventBuffer *buffer, char* fname);
+}  // namespace evl
 
 #endif  // SRC_EVL_CORE_BUFFER_CSV_HPP_

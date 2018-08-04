@@ -7,8 +7,10 @@
 
 #include <evl/core/types.hpp>
 
-void disp_event(EventTuple x);
+namespace evl {
+  void disp_event(EventTuple x);
 
-cv::Mat events_to_mat(std::vector<EventTuple> events);
+  cv::Mat events_to_mat(std::vector<EventTuple> events);
+}  // namespace evl
 
 #endif    // SRC_EVL_UTILS_EVENT_UTILS_HPP_

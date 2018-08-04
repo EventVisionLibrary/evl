@@ -9,8 +9,10 @@
 #define W 240
 #define H 180
 
-void detect_rod_tip(std::vector<EventTuple>, cv::Rect *roi);
-void detect_rod_tip(std::vector<EventTuple> v,
-  cv::Rect *roi, cv::Point *vertex);
+namespace evl {
+  void detect_rod_tip(std::vector<EventTuple>, cv::Rect *roi);
+  void detect_rod_tip(std::vector<EventTuple> v,
+    cv::Rect *roi, cv::Point *vertex);
+}  // namespace evl
 
 #endif    // SRC_EVL_IMGPROC_DETECTION_HPP_

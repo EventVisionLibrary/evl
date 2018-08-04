@@ -31,7 +31,7 @@ cv::Point vertex(50, 100);
 
 int lifetime = 10000;     // micro sec
 int buffersize = 50000;
-EventBuffer buffer(buffersize);
+evl::EventBuffer buffer(buffersize);
 
 void setup(void) {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -49,8 +49,8 @@ void setup(void) {
 
 void draw(void) {
     glClear(GL_COLOR_BUFFER_BIT);
-    std::vector<EventTuple> v = readBufferOnLifetime(&buffer, lifetime);
-    detect_rod_tip(v, &roi, &vertex);
+    std::vector<evl::EventTuple> v = evl::readBufferOnLifetime(&buffer, lifetime);
+    evl::detect_rod_tip(v, &roi, &vertex);
 
     glColor3f(1.0, 0.0, 0.0);
 
@@ -94,7 +94,7 @@ int initGlutDisplay(int argc, char* argv[]) {
 }
 
 int main(int argc, char * argv[]) {
-    std::thread t1(bufferData, &buffer);
+    std::thread t1(evl::bufferData, &buffer);
     initGlutDisplay(argc, argv);
     t1.join();
     return 1;
