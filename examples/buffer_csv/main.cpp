@@ -28,7 +28,7 @@ void loop_readImage(evl::EventBuffer *buffer, int lifetime) {
     while (1) {
         usleep(100000);      // micro sec. calling frequency
         std::vector<evl::EventTuple> v = evl::readBufferOnLifetime(buffer, lifetime);
-        cv::Mat img = evl::events_to_mat(v);
+        cv::Mat img = evl::events_to_mat(v, true);
         cv::imshow("image", img);
         cv::waitKey(1);
     }
