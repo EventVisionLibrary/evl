@@ -4,13 +4,15 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake ${PROJECT_SOURCE_DIR}/../cmake)
 
 find_package(Boost 1.65.0 REQUIRED)
+find_package(Eigen3 REQUIRED)
 find_package(OpenCV HINTS /usr/local/opt/opencv /usr/local/Cellar/opencv REQUIRED)
 find_package(libcaer REQUIRED)
 find_package(EVL REQUIRED)
 
 # include library
-include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(${Boost_INCLUDE_DIRS})
+include_directories(${EIGEN3_INCLUDE_DIRS})
+include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(${LIBCAER_INCLUDE_DIRS})
 include_directories(${EVL_INCLUDE_DIRS})
 
@@ -20,5 +22,5 @@ set(SHARED_SOURCES
 
 set(SHARED_LIBRARIES
 	${OpenCV_LIBRARIES}
-  	${LIBCAER_LIBRARIES}
+  ${LIBCAER_LIBRARIES}
 )
