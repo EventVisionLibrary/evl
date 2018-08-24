@@ -27,14 +27,14 @@ namespace evl {
           int y = std::get<2>(*iter);
           if (with_pol) {
               bool pol = std::get<3>(*iter);
-              cv::Vec3b *p = src.ptr<cv::Vec3b>(y, x);
+              cv::Vec3b *p = src.ptr<cv::Vec3b>(H-y-1, W-x-1);
               if (pol) {
                   *p = cv::Vec3b(0, 0, 255); // +1 -> red
               } else {
                   *p = cv::Vec3b(255, 0, 0); // -1 -> blue
               }
           } else {
-              unsigned char *p = src.ptr<unsigned char>(y, x);
+              unsigned char *p = src.ptr<unsigned char>(H-y-1, W-x-1); //Hard coding for /examples/feature_tracking
               *p = 255; 
           }
       }
