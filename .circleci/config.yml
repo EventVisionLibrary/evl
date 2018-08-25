@@ -16,7 +16,7 @@ jobs:
           name: Install Boost
           command: sudo -E apt-get install -y -qq libboost-all-dev
       - run:
-          name: Install libeigen3
+          name: Install Eigen3
           command: sudo -E apt-get install libeigen3-dev
       - run:
           name: Install OpenCV

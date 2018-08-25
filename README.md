@@ -23,9 +23,10 @@ We are now preparing for Windows OS support. Stay tuned, or contribute!
 
 * C++11
 * CMake >= 3.1
-* `OpenCV`: [Link](https://opencv.org/)
-* `Boost >= 1.65`: `brew install boost` [Link](https://www.boost.org/)
-* `libcaer >= 2`: `brew install libcaer` [Link](https://github.com/inilabs/libcaer)
+* `OpenCV`: `brew install opencv` or `apt-get install libopencv-dev` [Link](https://opencv.org/)
+* `Boost >= 1.65`: `brew install boost` or `apt-get install libboost-all-dev` [Link](https://www.boost.org/)
+* `Eigen3`: `brew install eigen` or `apt-get install libeigen3-dev` [Link](http://eigen.tuxfamily.org/index.php?title=Main_Page)
+* `libcaer >= 2`: `brew install libcaer` or `bash install_dependencies.sh` [Link](https://github.com/inilabs/libcaer)
 
 ### Build
 
