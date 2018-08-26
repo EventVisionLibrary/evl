@@ -6,15 +6,23 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
+#include <cmath>
 
 /// ugly global variables
-cv::CV_32FC2 *p=NULL;
-cv::CV_32FC1 *u_=NULL;
-cv::CV_32FC1 *ut_=NULL;
-cv::CV_32FC1 *ft=NULL;
-cv::CV_32FC2 *pt=NULL;
-cv::CV_32FC4 *manifold_t=NULL;
-cv::CV_32FC4 *p_manifold = NULL;
+// cv::CV_32FC2 *p=NULL;
+// cv::CV_32FC1 *u_=NULL;
+// cv::CV_32FC1 *ut_=NULL;
+// cv::CV_32FC1 *ft=NULL;
+// cv::CV_32FC2 *pt=NULL;
+// cv::CV_32FC4 *manifold_t=NULL;
+// cv::CV_32FC4 *p_manifold = NULL;
+cv::Mat *p=NULL;
+cv::Mat *u_=NULL;
+cv::Mat *ut_=NULL;
+cv::Mat *ft=NULL;
+cv::Mat *pt=NULL;
+cv::Mat *manifold_t=NULL;
+cv::Mat *p_manifold = NULL;
 
 // TODO(shiba) rewrite not to depend on cuda
 
@@ -39,12 +47,11 @@ __global__ void Prepare_manifold_kernel(cv::CV_32FC4::KernelData g_m, cudaTextur
 }
 
 /// Precompute tensor for manifold denoising
-__inline__ __device__ float3 getCoefficients(float4 mc)
-{
-    float c1 = (1.f+sqr(mc.y))/mc.w;
-    float c3 = (1.f+sqr(mc.x))/mc.w;
-    float c2 = mc.x*mc.y/mc.w;
-    return make_float3(c1,c2,c3);
+std::vector<float> getCoefficients(std::vector<float> mc) {
+    float c1 = (1.f + std::pow(mc[1], 2)) / mc[3];
+    float c3 = (1.f + std::pow(mc[0], 2)) / mc[3];
+    float c2 = mc[0] * mc[1] / mc[3];
+    return make_float3(c1, c2, c3);
 }
 
 /// Dual Kernel for manifold denoising (shared between all data terms)

@@ -4,7 +4,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 
-#include "cnpy.h"
+// #include "cnpy.h"
 
 void saveEvents(std::string filename, std::vector<Event> &events) {
     // create text file and go through all events
@@ -24,7 +24,7 @@ void loadEvents(std::string filename, std::vector<Event>& events, bool skip_even
         Event temp_event;
         double time;
         double first_timestamp=0;
-        double last_timestamp=0;
+        double last_timestamp=0;
         bool normalize_time=true;
         if (skip_events)
             for(int i=0;i<30000;i++) {// throw away the on-events
@@ -53,39 +53,27 @@ void loadEvents(std::string filename, std::vector<Event>& events, bool skip_even
 }
 
 
-// TODO(shiba) rewrite independent to iu::
-// void saveState(std::string filename, const cv::CV_32FC1 *mat, bool as_png, bool as_npy) {
 void saveState(std::string filename, const cv::Mat *mat, bool as_png, bool as_npy) {
-    // iu::ImageCpu_32f_C1 in_cpu(mat->width(),mat->height());
-    // iu::Size<2> sz = mat->size();
-    // const unsigned int shape[] = {sz.width,sz.height};
-    // iu::copy(mat,&in_cpu);
-    if(as_npy) {
-        // save current image as npy
-        // cnpy::npy_save(filename + ".npy",in_cpu.data(),shape,2);
-        cnpy::npy_save(filename + ".npy", mat, shape, 2);
-    }
+    // if(as_npy) {
+    //     // save current image as npy
+    //     cnpy::npy_save(filename + ".npy", mat, shape, 2);
+    // }
     if(as_png) {
         // save current image as png
-        // iu::imsave(&in_cpu,filename + ".png",true);
-        iu::imsave(mat, filename + ".png",true);
+        cv::Mat img;
+        (*mat).copyTo(img);
+        cv::imwrite(filename + ".png", img);
     }
 }
 
-// TODO(shiba) rewrite independent to iu::
-// void loadState(std::string filename, cv::CV_32FC1 *mat, float u_min) {
 void loadState(std::string filename, cv::Mat *mat, float u_min) {
+    // read png file
     if(filename.find(".png") != std::string::npos) {
-        iu::ImageCpu_32f_C1* initial_output_cpu = iu::imread_32f_C1(filename);
-        mat = new cv::CV_32FC1(initial_output_cpu->size());
-        iu::copy(initial_output_cpu,mat);
-    } else {
-        cnpy::NpyArray input = cnpy::npy_load(filename);
-        mat = new cv::CV_32FC1(input.shape[0],input.shape[1]);
-        iu::ImageCpu_32f_C1 initial_output_cpu((float*)input.data,input.shape[0],input.shape[1],input.shape[0]*sizeof(float),true);
-        iu::copy(&initial_output_cpu,mat);
+        cv::Mat image = cv::imread(filename, CV_LOAD_IMAGE_GRAYSCALE);
+        image.convertTo(image, CV_32FC1, 1.0/255.0);
+        image.copyTo(*mat);
     }
-    float minVal,maxVal;
-    iu::math::minMax(*mat,minVal,maxVal);
-    iu::math::addC(*mat,u_min-minVal,*mat);
+    double minVal, maxVal;
+    cv::minMaxLoc(*mat, &minVal, &maxVal);
+    *mat = *mat + u_min - minVal;
 }

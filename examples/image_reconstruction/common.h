@@ -13,10 +13,9 @@
 
 // IO functions
 void saveEvents(std::string filename, std::vector<Event> &events);
-// void saveState(std::string filename, const cv::CV_32FC1 *mat, bool as_png=false, bool as_npy=false);
-void saveState(std::string filename, const cv::Mat *mat, bool as_png=false, bool as_npy=false);
-void loadEvents(std::string filename, std::vector<Event>& events, bool skip_events=false, bool flip_ud=false);
-// void loadState(std::string filename, cv::CV_32FC1 *mat, float u_min);
+void loadEvents(std::string filename, std::vector<Event>& events, bool skip_events, bool flip_ud);
+
+void saveState(std::string filename, const cv::Mat *mat, bool as_png, bool as_npy);
 void loadState(std::string filename, cv::Mat *mat, float u_min);
 
 #endif  // COMMON_H
