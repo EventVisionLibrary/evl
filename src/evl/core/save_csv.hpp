@@ -7,7 +7,7 @@
 #include "types.hpp"
 
 namespace evl {
-  void loop_saveData(EventBuffer *buffer, int lifetime, std::string filename);
+  void saveBuffer(EventBuffer *buffer, int lifetime, std::string filename);
 }  // namespace evl
 
 #endif  // SRC_EVL_CORE_SAVE_CSV_HPP_

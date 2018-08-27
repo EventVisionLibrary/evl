@@ -1,19 +1,19 @@
 // Copyright 2018 Event Vision Library.
+#include "event_utils.hpp"
+
 #include <iostream>
 #include <vector>
 #include <opencv2/core/core.hpp>
 #include <evl/core/types.hpp>
 
-#include "event_utils.hpp"
-
 namespace evl {
-  void disp_event(EventTuple x) {
+  void printEvent(EventTuple x) {
       std::cout << ' ' << std::get<0>(x) << ' ' << \
       std::get<1>(x) << ' ' << std::get<2>(x) << ' ' << \
       std::get<3>(x) << std::endl;
   }
 
-  cv::Mat events_to_mat(std::vector<EventTuple> events, bool with_pol) {
+  cv::Mat convertEventsToMat(std::vector<EventTuple> events, bool with_pol) {
       int W = 240;
       int H = 180;
       cv::Mat src;

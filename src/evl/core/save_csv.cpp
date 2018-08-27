@@ -1,16 +1,18 @@
 // Copyright 2018 Event Vision Library.
+#include "save_csv.hpp"
+
 #include <iostream>
 #include <tuple>
 #include <fstream>
 #include <string>
 #include <vector>
-#include "types.hpp"
+
 #include "common.hpp"
+#include "types.hpp"
 #include "read_buffer.hpp"
-#include "save_csv.hpp"
 
 namespace evl {
-  void loop_saveData(EventBuffer *buffer, int lifetime, std::string filename) {
+  void saveBuffer(EventBuffer *buffer, int lifetime, std::string filename) {
       usleep(100000);      // micro sec
       std::ofstream writing_file;
       writing_file.open(filename);

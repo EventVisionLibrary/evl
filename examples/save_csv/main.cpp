@@ -8,8 +8,8 @@ int main() {
     int lifetime = 1000;     // micro sec
     int buffersize = 50000;
     evl::EventBuffer buffer(buffersize);
-    char fname[] = "../../data/7.csv";
-    std::string filename = "test.txt";
+    char orgFname[] = "../../data/7.csv";
+    std::string newFname = "test.txt";
 
     std::thread t1(evl::storeBufferCSV, &buffer, orgFname);
     std::thread t2(evl::saveBuffer, &buffer, lifetime, newFname);
