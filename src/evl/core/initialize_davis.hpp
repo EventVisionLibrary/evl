@@ -5,7 +5,7 @@
 #include "types.hpp"
 
 namespace evl {
-  Davis initializeDavis(void);
+Davis initializeDavis(void);
 }  // namespace evl
 
 #endif  // SRC_EVL_CORE_INITIALIZE_DAVIS_HPP_

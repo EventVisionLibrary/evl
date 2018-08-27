@@ -40,7 +40,7 @@ void storeBufferCSV(EventBuffer *buffer, char* fname) {
     }
     fclose(fp);
     std::cout << "[Thread1] Buffering Loop Finished!! " << std::endl;
-  }
+}
 
 void storeBufferDAVIS(EventBuffer *buffer) {
     Davis davisHandle = initializeDavis();
