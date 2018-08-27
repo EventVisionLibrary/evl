@@ -1,7 +1,7 @@
 // Copyright 2018 Event Vision Library.
 #include <thread>
 #include <evl/core/types.hpp>
-#include <evl/core/buffer_csv.hpp>
+#include <evl/core/store_buffer.hpp>
 #include <evl/core/save_csv.hpp>
 
 int main() {
@@ -11,8 +11,8 @@ int main() {
     char fname[] = "../../data/7.csv";
     std::string filename = "test.txt";
 
-    std::thread t1(evl::bufferData, &buffer, fname);
-    std::thread t2(evl::loop_saveData, &buffer, lifetime, filename);
+    std::thread t1(evl::storeBufferCSV, &buffer, orgFname);
+    std::thread t2(evl::saveBuffer, &buffer, lifetime, newFname);
 
     t1.join();
     t2.join();

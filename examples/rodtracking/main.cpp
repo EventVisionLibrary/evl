@@ -10,7 +10,7 @@
 #include "unistd.h"
 
 #include <evl/core/types.hpp>
-#include <evl/core/buffer_davis.hpp>
+#include <evl/core/store_buffer.hpp>
 #include <evl/core/read_buffer.hpp>
 
 #include <evl/imgproc/detection.hpp>
@@ -50,7 +50,7 @@ int main() {
     evl::EventBuffer buffer(buffersize);
 
     std::cout << "version "<< CV_VERSION << std::endl;
-    std::thread t1(evl::bufferData, &buffer);
+    std::thread t1(evl::storeBufferDAVIS, &buffer);
     loop_detectRod(&buffer, lifetime);
     t1.join();
     // cv::waitKey(100);

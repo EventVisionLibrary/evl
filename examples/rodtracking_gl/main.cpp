@@ -10,7 +10,7 @@
 #include "unistd.h"
 
 #include <evl/core/types.hpp>
-#include <evl/core/buffer_davis.hpp>
+#include <evl/core/store_buffer.hpp>
 #include <evl/core/read_buffer.hpp>
 #include <evl/imgproc/detection.hpp>
 
@@ -94,7 +94,7 @@ int initGlutDisplay(int argc, char* argv[]) {
 }
 
 int main(int argc, char * argv[]) {
-    std::thread t1(evl::bufferData, &buffer);
+    std::thread t1(evl::storeBufferDAVIS, &buffer);
     initGlutDisplay(argc, argv);
     t1.join();
     return 1;
