@@ -6,7 +6,7 @@
 
 namespace evl {
 class Shutdown {
-public:
+ public:
   static std::atomic_bool globalShutdown;
   static void globalShutdownSignalHandler(int signal);
   static void usbShutdownHandler(void *ptr);
