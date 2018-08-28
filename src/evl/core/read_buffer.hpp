@@ -3,6 +3,7 @@
 #define SRC_EVL_CORE_READ_BUFFER_HPP_
 
 #include <vector>
+
 #include "types.hpp"
 
 namespace evl {

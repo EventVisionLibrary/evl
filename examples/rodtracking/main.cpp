@@ -3,16 +3,14 @@
 #include <thread>
 #include <vector>
 
+#include "unistd.h"
+
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-
-#include "unistd.h"
-
-#include <evl/core/types.hpp>
-#include <evl/core/store_buffer.hpp>
 #include <evl/core/read_buffer.hpp>
-
+#include <evl/core/store_buffer.hpp>
+#include <evl/core/types.hpp>
 #include <evl/imgproc/detection.hpp>
 
 #define W 240

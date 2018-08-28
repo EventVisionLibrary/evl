@@ -1,12 +1,12 @@
 // Copyright 2018 Event Vision Library.
 #include <iostream>
 #include <thread>
+
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
-
-#include <evl/core/types.hpp>
-#include <evl/core/store_buffer.hpp>
 #include <evl/core/read_buffer.hpp>
+#include <evl/core/store_buffer.hpp>
+#include <evl/core/types.hpp>
 #include <evl/utils/event_utils.hpp>
 
 void streamPrintEvent(evl::EventBuffer *buffer, int lifetime) {

@@ -1,15 +1,15 @@
 // Copyright 2018 Event Vision Library.
 #include "save_csv.hpp"
 
-#include <iostream>
-#include <tuple>
 #include <fstream>
+#include <iostream>
 #include <string>
+#include <tuple>
 #include <vector>
 
 #include "common.hpp"
-#include "types.hpp"
 #include "read_buffer.hpp"
+#include "types.hpp"
 
 namespace evl {
 void saveBuffer(EventBuffer *buffer, int lifetime, std::string filename) {

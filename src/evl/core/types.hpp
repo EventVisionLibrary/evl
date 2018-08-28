@@ -3,6 +3,7 @@
 #define SRC_EVL_CORE_TYPES_HPP_
 
 #include <tuple>
+
 #include <boost/circular_buffer.hpp>
 #include <libcaercpp/libcaer.hpp>
 #include <libcaercpp/devices/davis.hpp>

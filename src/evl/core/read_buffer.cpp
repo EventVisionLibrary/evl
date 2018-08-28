@@ -1,13 +1,13 @@
 // Copyright 2018 Event Vision Library.
-#include <vector>
-#include <mutex>
-#include "unistd.h"     //  for sleep function
-
-#include "types.hpp"
-#include "shutdown.hpp"
-#include "common.hpp"
-
 #include "read_buffer.hpp"
+
+#include "unistd.h"     //  for sleep function
+#include <mutex>
+#include <vector>
+
+#include "common.hpp"
+#include "shutdown.hpp"
+#include "types.hpp"
 
 std::mutex mtx;
 

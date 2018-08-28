@@ -1,13 +1,12 @@
 // Copyright 2018 Event Vision Library.
 #include "store_buffer.hpp"
 
+#include "unistd.h"
+#include <fstream>
 #include <iostream>
 #include <tuple>
-#include <fstream>
-#include "unistd.h"
 
 #include <libcaercpp/libcaer.hpp>
-
 #include "common.hpp"
 #include "initialize_davis.hpp"
 #include "shutdown.hpp"

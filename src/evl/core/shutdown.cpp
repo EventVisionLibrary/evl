@@ -4,6 +4,7 @@
 #include <atomic>
 #include <csignal>
 #include <cstddef>
+
 #include <libcaercpp/libcaer.hpp>
 
 namespace evl {

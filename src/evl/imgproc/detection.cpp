@@ -1,9 +1,11 @@
 // Copyright 2018 Event Vision Library.
 #include "detection.hpp"
+
 #include <vector>
+
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include "../core/types.hpp"
+#include "evl/core/types.hpp"
 
 namespace evl {
   void detect_rod_tip(std::vector<EventTuple> v, cv::Rect *roi) {

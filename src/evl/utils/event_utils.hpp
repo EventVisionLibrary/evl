@@ -3,8 +3,8 @@
 #define SRC_EVL_UTILS_EVENT_UTILS_HPP_
 
 #include <vector>
-#include <opencv2/core/core.hpp>
 
+#include <opencv2/core/core.hpp>
 #include <evl/core/types.hpp>
 
 namespace evl {

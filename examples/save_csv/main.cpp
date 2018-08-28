@@ -1,8 +1,9 @@
 // Copyright 2018 Event Vision Library.
 #include <thread>
-#include <evl/core/types.hpp>
-#include <evl/core/store_buffer.hpp>
+
 #include <evl/core/save_csv.hpp>
+#include <evl/core/store_buffer.hpp>
+#include <evl/core/types.hpp>
 
 int main() {
     int lifetime = 1000;     // micro sec

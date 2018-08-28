@@ -1,9 +1,11 @@
 // Copyright 2018 Event Vision Library.
+#include "initialize_davis.hpp"
+
 #include <iostream>
+
 #include <libcaercpp/libcaer.hpp>
 #include <libcaercpp/devices/davis.hpp>
 #include "types.hpp"
-#include "initialize_davis.hpp"
 
 namespace evl {
 Davis initializeDavis(void) {
