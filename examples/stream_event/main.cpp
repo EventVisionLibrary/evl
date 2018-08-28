@@ -9,7 +9,7 @@
 #include <evl/core/types.hpp>
 #include <evl/utils/event_utils.hpp>
 
-void streamPrintEvent(evl::EventBuffer *buffer, int lifetime) {
+void streamEvent(evl::EventBuffer *buffer, int lifetime) {
     usleep(100000);      // micro sec
     while (1) {
         usleep(100000);      // micro sec. calling frequency
@@ -21,7 +21,7 @@ void streamPrintEvent(evl::EventBuffer *buffer, int lifetime) {
     }
 }
 
-void streamShowImage(evl::EventBuffer *buffer, int lifetime) {
+void streamEventAsImage(evl::EventBuffer *buffer, int lifetime) {
     cv::namedWindow("image", 1);
     usleep(100000);      // micro sec
     while (1) {
@@ -39,8 +39,8 @@ int main() {
     evl::EventBuffer buffer(buffersize);
     char fname[] = "../../data/sample2.csv";
     std::thread t1(evl::storeBufferFromCsv, &buffer, fname);
-    // streamPrintEvent(&buffer, lifetime);
-    streamShowImage(&buffer, lifetime);
+    // streamEvent(&buffer, lifetime);
+    streamEventAsImage(&buffer, lifetime);
     t1.join();
     return 0;
 }
