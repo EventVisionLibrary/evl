@@ -16,7 +16,7 @@
 #define W 240
 #define H 180
 
-void loop_detectRod(evl::EventBuffer *buffer, int lifetime) {
+void detectRod(evl::EventBuffer *buffer, int lifetime) {
     cv::Rect roi(50, 100, 150, 80);  // (x, y, w, h), initialized here
     cv::Point vertex(50, 100);
     cv::namedWindow("filtered", 1);
@@ -49,7 +49,7 @@ int main() {
 
     std::cout << "version "<< CV_VERSION << std::endl;
     std::thread t1(evl::storeBufferFromDavis, &buffer);
-    loop_detectRod(&buffer, lifetime);
+    detectRod(&buffer, lifetime);
     t1.join();
     // cv::waitKey(100);
     // cv::destroyAllWindows();
