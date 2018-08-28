@@ -48,7 +48,7 @@ int main() {
     evl::EventBuffer buffer(buffersize);
 
     std::cout << "version "<< CV_VERSION << std::endl;
-    std::thread t1(evl::storeBufferDAVIS, &buffer);
+    std::thread t1(evl::storeBufferFromDavis, &buffer);
     loop_detectRod(&buffer, lifetime);
     t1.join();
     // cv::waitKey(100);

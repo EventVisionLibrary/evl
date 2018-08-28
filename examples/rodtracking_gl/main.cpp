@@ -93,7 +93,7 @@ int initGlutDisplay(int argc, char* argv[]) {
 }
 
 int main(int argc, char * argv[]) {
-    std::thread t1(evl::storeBufferDAVIS, &buffer);
+    std::thread t1(evl::storeBufferFromDavis, &buffer);
     initGlutDisplay(argc, argv);
     t1.join();
     return 1;

@@ -12,7 +12,7 @@ int main() {
     char orgFname[] = "../../data/7.csv";
     std::string newFname = "test.txt";
 
-    std::thread t1(evl::storeBufferCSV, &buffer, orgFname);
+    std::thread t1(evl::storeBufferFromCsv, &buffer, orgFname);
     std::thread t2(evl::saveBuffer, &buffer, lifetime, newFname);
 
     t1.join();

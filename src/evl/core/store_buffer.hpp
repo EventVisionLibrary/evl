@@ -5,8 +5,8 @@
 #include "types.hpp"
 
 namespace evl {
-void storeBufferCSV(EventBuffer *buffer, char* fname);
-void storeBufferDAVIS(EventBuffer *buffer);
+void storeBufferFromCsv(EventBuffer *buffer, char* fname);
+void storeBufferFromDavis(EventBuffer *buffer);
 }  // namespace evl
 
 #endif  // SRC_EVL_CORE_STORE_BUFFER_HPP_

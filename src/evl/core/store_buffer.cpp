@@ -13,7 +13,7 @@
 #include "types.hpp"
 
 namespace evl {
-void storeBufferCSV(EventBuffer *buffer, char* fname) {
+void storeBufferFromCsv(EventBuffer *buffer, char* fname) {
     FILE *fp;
     fp = fopen(fname, "r");
 
@@ -41,7 +41,7 @@ void storeBufferCSV(EventBuffer *buffer, char* fname) {
     std::cout << "[Thread1] Buffering Loop Finished!! " << std::endl;
 }
 
-void storeBufferDAVIS(EventBuffer *buffer) {
+void storeBufferFromDavis(EventBuffer *buffer) {
     Davis davisHandle = initializeDavis();
     davisHandle.dataStart(nullptr, nullptr, nullptr,
     &Shutdown::usbShutdownHandler, nullptr);

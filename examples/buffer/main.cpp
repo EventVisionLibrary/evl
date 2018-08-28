@@ -38,7 +38,7 @@ int main() {
     int buffersize = 50000;
     evl::EventBuffer buffer(buffersize);
     char fname[] = "../../data/sample2.csv";
-    std::thread t1(evl::storeBufferCSV, &buffer, fname);
+    std::thread t1(evl::storeBufferFromCsv, &buffer, fname);
     // streamPrintEvent(&buffer, lifetime);
     streamShowImage(&buffer, lifetime);
     t1.join();
