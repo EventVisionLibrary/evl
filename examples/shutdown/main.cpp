@@ -1,7 +1,7 @@
 // Copyright 2018 Event Vision Library.
-#include <evl/core/shutdown.hpp>
 #include <libcaercpp/libcaer.hpp>
 #include <libcaercpp/devices/davis.hpp>
+#include <evl/core/shutdown.hpp>
 
 int main(void) {
     // Open a DAVIS, give it a device ID of 1,

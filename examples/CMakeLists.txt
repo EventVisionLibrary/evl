@@ -12,10 +12,8 @@ SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../)
 
 include("CMakeLists.shared")
 
+add_subdirectory("save_csv")
 add_subdirectory("shutdown")
-add_subdirectory("multithread")
-add_subdirectory("buffer_davis")
-add_subdirectory("buffer_csv")
+add_subdirectory("stream_event")
 add_subdirectory("rodtracking")
 add_subdirectory("rodtracking_gl")
-add_subdirectory("save_csv")

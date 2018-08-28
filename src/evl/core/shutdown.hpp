@@ -5,16 +5,13 @@
 #include <atomic>
 
 namespace evl {
-  class Shutdown {
-   public:
-      static std::atomic_bool globalShutdown;
-
-      static void globalShutdownSignalHandler(int signal);
-
-      static void usbShutdownHandler(void *ptr);
-
-      int setSigHandler();
-  };
+class Shutdown {
+ public:
+  static std::atomic_bool globalShutdown;
+  static void globalShutdownSignalHandler(int signal);
+  static void usbShutdownHandler(void *ptr);
+  int setSigHandler();
+};
 }  // namespace evl
 
 #endif    // SRC_EVL_CORE_SHUTDOWN_HPP_

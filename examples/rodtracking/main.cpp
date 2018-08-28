@@ -3,22 +3,20 @@
 #include <thread>
 #include <vector>
 
+#include "unistd.h"
+
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-
-#include "unistd.h"
-
-#include <evl/core/types.hpp>
-#include <evl/core/buffer_davis.hpp>
 #include <evl/core/read_buffer.hpp>
-
+#include <evl/core/store_buffer.hpp>
+#include <evl/core/types.hpp>
 #include <evl/imgproc/detection.hpp>
 
 #define W 240
 #define H 180
 
-void loop_detectRod(evl::EventBuffer *buffer, int lifetime) {
+void detectRod(evl::EventBuffer *buffer, int lifetime) {
     cv::Rect roi(50, 100, 150, 80);  // (x, y, w, h), initialized here
     cv::Point vertex(50, 100);
     cv::namedWindow("filtered", 1);
@@ -50,8 +48,8 @@ int main() {
     evl::EventBuffer buffer(buffersize);
 
     std::cout << "version "<< CV_VERSION << std::endl;
-    std::thread t1(evl::bufferData, &buffer);
-    loop_detectRod(&buffer, lifetime);
+    std::thread t1(evl::storeBufferFromDavis, &buffer);
+    detectRod(&buffer, lifetime);
     t1.join();
     // cv::waitKey(100);
     // cv::destroyAllWindows();

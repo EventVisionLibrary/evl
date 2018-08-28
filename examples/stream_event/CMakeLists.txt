@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(multithread)
+project(stream_event)
 
 include("../CMakeLists.shared")
 
