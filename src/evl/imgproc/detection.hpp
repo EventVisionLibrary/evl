@@ -40,24 +40,7 @@
 
 namespace evl {
 
-/******************************************************************************/
-/*! @brief 
-
-    @param[in]      *buffer (EventBuffer) Buffer to store events.
-    @param[in]      *fname  (char) Filename of saved events (.csv or .txt).
-
-    @exception      none    
-******************************************************************************/
 void detect_rod_tip(std::vector<EventTuple> v, cv::Rect *roi);
-
-/******************************************************************************/
-/*! @brief 
-
-    @param[in]      *buffer (EventBuffer) Buffer to store events.
-    @param[in]      *fname  (char) Filename of saved events (.csv or .txt).
-
-    @exception      none    
-******************************************************************************/
 void detect_rod_tip(std::vector<EventTuple> v,
                     cv::Rect *roi, cv::Point *vertex);
 }  // namespace evl

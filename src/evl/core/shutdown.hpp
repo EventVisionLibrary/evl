@@ -33,6 +33,11 @@ namespace evl {
 */
 class Shutdown {
   public:
+    /*! @var   globalShutdown
+    @brief Shutdown signal
+    
+    When get SIGINT, this variable is 1.
+    */
     static std::atomic_bool globalShutdown;
     static void globalShutdownSignalHandler(int signal);
     static void usbShutdownHandler(void *ptr);
