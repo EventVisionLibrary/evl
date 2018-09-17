@@ -2,6 +2,7 @@
 #ifndef SRC_EVL_CORE_TYPES_HPP_
 #define SRC_EVL_CORE_TYPES_HPP_
 
+#include <queue>
 #include <tuple>
 
 #include <boost/circular_buffer.hpp>
@@ -10,7 +11,7 @@
 
 namespace evl {
 typedef std::tuple<int32_t, uint16_t, uint16_t, bool> EventTuple;
-typedef boost::circular_buffer<EventTuple> EventBuffer;
+typedef std::queue<EventTuple> EventBuffer;
 typedef libcaer::events::PolarityEventPacket EventPolarity;
 typedef libcaer::devices::davis Davis;
 }  // namespace evl

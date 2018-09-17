@@ -29,8 +29,7 @@ cv::Rect roi(50, 100, 150, 80);  // (x, y, w, h), initialized
 cv::Point vertex(50, 100);
 
 int lifetime = 10000;     // micro sec
-int buffersize = 50000;
-evl::EventBuffer buffer(buffersize);
+evl::EventBuffer buffer;
 
 void setup(void) {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);

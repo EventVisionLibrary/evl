@@ -11,26 +11,31 @@
 
 std::mutex mtx;
 
-
+#include <iostream>
 namespace evl {
 std::vector<EventTuple> readBufferOnLifetime(EventBuffer *buffer,
     int lifetime) {
     std::vector<EventTuple> v;
 
     mtx.lock();
-    EventTuple tup = (*buffer).front();    // get first element
-    int32_t starttime = std::get<0>(tup);
-    (*buffer).pop_front();                  // remove first element
-    v.push_back(tup);
+    EventTuple tup = (*buffer).front();    // refer to first element
+    int32_t start_time = std::get<0>(tup);
 
-    for (int cnt = 0; cnt < (*buffer).capacity(); cnt++) {
-        EventTuple tup = (*buffer).front();    // get first element
+    while (1) {
+        EventTuple tup = (*buffer).front();    // refer to first element
+        std::cout << "arakawa" << std::endl;  
         if (std::get<0>(tup) == 0) {
-        break;
-        } else if (std::get<0>(tup) > starttime - lifetime) {
-            (*buffer).pop_front();                  // remove first element
+            std::cout << "hoge" << std::endl; 
+            (*buffer).pop();
+            break;
+        } else if (std::get<0>(tup) < start_time + lifetime) {
+            (*buffer).pop();                  // remove first element
             v.push_back(tup);
-        } else { break; }
+            std::cout << "riku" << std::endl; 
+        } else { 
+            std::cout << "fuga" << std::endl;   // if next data is over lifetime, keep it in buffer. 
+            break; 
+        }
     }
     mtx.unlock();
     return v;
@@ -40,18 +45,15 @@ std::vector<EventTuple> readBufferOnNumber(EventBuffer *buffer, int number) {
     std::vector<EventTuple> v;
 
     mtx.lock();
-    EventTuple tup = (*buffer).front();    // get first element
-    (*buffer).pop_front();                  // remove first element
-    v.push_back(tup);
 
-    for (int cnt = 0; cnt < (*buffer).capacity(); cnt++) {
-        EventTuple tup = (*buffer).front();    // get first element
-        if (std::get<0>(tup) == 0) {
-        break;
-        } else if (v.size() < number) {
-            (*buffer).pop_front();                  // remove first element
+    while (v.size() < number) {
+        EventTuple tup = (*buffer).front();    // refer to first element
+        (*buffer).pop();    // refer to first element
+        if (std::get<0>(tup) != 0) {
             v.push_back(tup);
-        } else { break; }
+        } else {
+            break;
+        }
     }
     mtx.unlock();
     return v;

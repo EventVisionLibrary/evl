@@ -44,8 +44,7 @@ void detectRod(evl::EventBuffer *buffer, int lifetime) {
 
 int main() {
     int lifetime = 10000;     // micro sec
-    int buffersize = 50000;
-    evl::EventBuffer buffer(buffersize);
+    evl::EventBuffer buffer;
 
     std::cout << "version "<< CV_VERSION << std::endl;
     std::thread t1(evl::storeBufferFromDavis, &buffer);

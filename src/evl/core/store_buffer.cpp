@@ -18,7 +18,7 @@ void storeBufferFromCsv(EventBuffer *buffer, char* fname) {
     fp = fopen(fname, "r");
 
     if (fp == NULL) {
-        printf("%sThe file cannot be opened!\n", fname);
+        printf("%s The file cannot be opened!\n", fname);
         return;
     }
     int ret;
@@ -31,10 +31,10 @@ void storeBufferFromCsv(EventBuffer *buffer, char* fname) {
     while ((ret=fscanf(fp, "%lf,%lf,%lf,%lf", &ts, &x, &y, &pol_raw)) != EOF) {
     // while ((ret=fscanf(fp, "%u,%hu,%hu,%d", &ts, &x, &y, &pol_raw)) != EOF) {
         pol = static_cast<bool>(pol_raw);
-        usleep(100);
+        usleep(100);    // todo: change this value dynamically to time
         mtx.lock();
         EventTuple tup = std::make_tuple(ts, x, y, pol);
-        (*buffer).push_front(tup);
+        (*buffer).push(tup);
         mtx.unlock();
     }
     fclose(fp);
@@ -42,10 +42,12 @@ void storeBufferFromCsv(EventBuffer *buffer, char* fname) {
 }
 
 void storeBufferFromDavis(EventBuffer *buffer) {
+    std::cout << "store Davis! 1" << std::endl;
     Davis davisHandle = initializeDavis();
+    std::cout << "store Davis! 1.5" << std::endl;
     davisHandle.dataStart(nullptr, nullptr, nullptr,
     &Shutdown::usbShutdownHandler, nullptr);
-
+    std::cout << "store Davis! 2" << std::endl;
     // Blocking data-get mode to avoid wasting resources.
     davisHandle.configSet(CAER_HOST_CONFIG_DATAEXCHANGE,
     CAER_HOST_CONFIG_DATAEXCHANGE_BLOCKING, true);
@@ -74,7 +76,7 @@ void storeBufferFromDavis(EventBuffer *buffer) {
                     uint16_t y = event.getY();
                     bool pol = event.getPolarity();
                     EventTuple tup = std::make_tuple(ts, x, y, pol);
-                    (*buffer).push_front(tup);
+                    (*buffer).push(tup);
                 }
                 mtx.unlock();
             }
