@@ -2,3 +2,7 @@
 examples/build/*
 data/*
 !data/.gitkeep
+
+src/evl/html
+src/docs/build
+src/docs/doxygen/*
