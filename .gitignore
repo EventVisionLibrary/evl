@@ -1,4 +1,6 @@
 *.DS_Store
+libcaer/*
+
 examples/build/*
 data/*
 !data/.gitkeep

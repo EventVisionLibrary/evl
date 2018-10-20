@@ -16,4 +16,7 @@ add_subdirectory("save_csv")
 add_subdirectory("shutdown")
 add_subdirectory("stream_event")
 add_subdirectory("rodtracking")
-add_subdirectory("rodtracking_gl")
+
+# if you want to install this, you need to install OpenGL.
+# In the minimal configuration, we don't need OpenGL.
+#add_subdirectory("rodtracking_gl")
