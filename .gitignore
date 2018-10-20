@@ -1,4 +1,6 @@
 *.DS_Store
+*.vscode/*
+
 examples/build/*
 data/*
 !data/.gitkeep
@@ -6,3 +8,4 @@ data/*
 src/evl/html
 src/docs/build
 src/docs/doxygen/*
+src/docs/xml/*
