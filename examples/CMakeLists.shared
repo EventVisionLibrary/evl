@@ -3,7 +3,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 # cmake can locate ${CMAKE_PREFIX_PATH}/lib
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake ${PROJECT_SOURCE_DIR}/../cmake)
 
-find_package(Boost 1.65.0 REQUIRED)
+find_package(Boost 1.62.0 REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(OpenCV HINTS /usr/local/opt/opencv /usr/local/Cellar/opencv REQUIRED)
 find_package(libcaer REQUIRED)
