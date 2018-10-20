@@ -4,5 +4,6 @@ sudo -E apt-get install -y -qq libboost-all-dev
 sudo -E apt-get install libeigen3-dev
 sudo -E apt-get install -y -qq libopencv-dev
 
-sudo -E apt-get update && bash install_dependencies.sh
+sudo -E apt-get update
+sudo bash install_dependencies.sh
 cd examples; mkdir build; cd build; cmake ..; make
