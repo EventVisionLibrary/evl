@@ -1,6 +1,8 @@
 // Copyright 2018 Event Vision Library.
 #include <iostream>
 #include <thread>
+#include <vector>
+#include <string>
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -41,7 +43,7 @@ int main(int argc, char *argv[]) {
         std::exit(1);
     }
     std::string event_source = argv[1];
-    int lifetime = 5000; // micro sec
+    int lifetime = 5000;    // micro sec
     int buffersize = 50000;
 
     evl::EventBuffer buffer(buffersize);
@@ -51,15 +53,13 @@ int main(int argc, char *argv[]) {
         std::thread t1(evl::storeBufferFromDavis, &buffer);
         streamEventAsImage(&buffer, lifetime);
         t1.join();
-    }
-    else if (event_source.find("csv") != std::string::npos) {
+    } else if (event_source.find("csv") != std::string::npos) {
         std::cout << "read from Csv." << std::endl;
         std::thread t1(evl::storeBufferFromCsv, &buffer, argv[1]);
         streamEventAsImage(&buffer, lifetime);
         // streamEvent(&buffer, lifetime);
         t1.join();
-    }
-    else {
+    } else {
         std::cout << "Error! wrong event source name." << std::endl;
         std::exit(1);
     }

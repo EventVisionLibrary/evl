@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
         std::exit(1);
     }
     std::string event_source = argv[1];
-    int lifetime = 1000; // micro sec
+    int lifetime = 1000;    // micro sec
     int buffersize = 50000;
 
     evl::EventBuffer buffer(buffersize);
@@ -24,14 +24,12 @@ int main(int argc, char *argv[]) {
         std::thread t2(evl::saveBuffer, &buffer, lifetime, new_file);
         t1.join();
         t2.join();
-    }
-    else if (event_source.find("csv") != std::string::npos) {
+    } else if (event_source.find("csv") != std::string::npos) {
         std::thread t1(evl::storeBufferFromCsv, &buffer, argv[1]);
         std::thread t2(evl::saveBuffer, &buffer, lifetime, new_file);
         t1.join();
         t2.join();
-    }
-    else {
+    } else {
         std::cout << "Error! wrong event source name." << std::endl;
         std::exit(1);
     }

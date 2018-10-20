@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <tuple>
+#include <memory>
 
 #include <libcaercpp/libcaer.hpp>
 #include "common.hpp"
