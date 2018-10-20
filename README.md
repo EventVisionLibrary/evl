@@ -32,6 +32,7 @@ We are now preparing for Windows OS support. Stay tuned, or contribute!
 
 ```
 $ git clone https://github.com/EventVisionLibrary/evl.git
+$ cd evl
 $ cd examples
 $ mkdir build
 $ cd build
