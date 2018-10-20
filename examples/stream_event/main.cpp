@@ -33,15 +33,32 @@ void streamEventAsImage(evl::EventBuffer *buffer, int lifetime) {
     }
 }
 
-int main() {
-    int lifetime = 5000;     // micro sec
+int main(int argc, char *argv[]) {
+    if (argc < 2) {
+        std::cout << "Error! specify event source file or davis." << std::endl;
+        std::exit(1);
+    }
+    std::string event_source = argv[1];
+    int lifetime = 5000; // micro sec
     int buffersize = 50000;
+
     evl::EventBuffer buffer(buffersize);
-    char fname[] = "../../data/sample2.csv";
-    // std::thread t1(evl::storeBufferFromCsv, &buffer, fname);
-    std::thread t1(evl::storeBufferFromDavis, &buffer);
-    streamEvent(&buffer, lifetime);
-    // streamEventAsImage(&buffer, lifetime);
-    t1.join();
+
+    if (event_source == "davis") {
+        std::cout << "read from Davis." << std::endl;
+        std::thread t1(evl::storeBufferFromDavis, &buffer);
+        streamEventAsImage(&buffer, lifetime);
+        t1.join();
+    }
+    else if (event_source.find("csv") != std::string::npos) {
+        std::cout << "read from Csv." << std::endl;
+        std::thread t1(evl::storeBufferFromCsv, &buffer, argv[1]);
+        streamEventAsImage(&buffer, lifetime);
+        t1.join();
+    }
+    else {
+        std::cout << "Error! wrong event source name." << std::endl;
+        std::exit(1);
+    }
     return 0;
 }
