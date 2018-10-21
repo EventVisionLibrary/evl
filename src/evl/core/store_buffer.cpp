@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <tuple>
+#include <memory>
 
 #include <libcaercpp/libcaer.hpp>
 #include "common.hpp"
@@ -27,15 +28,18 @@ void storeBufferFromCsv(EventBuffer *buffer, char* fname) {
 
     double ts; double x; double y;
     double pol_raw; bool pol;
+    double before_time = 0;
 
     while ((ret=fscanf(fp, "%lf,%lf,%lf,%lf", &ts, &x, &y, &pol_raw)) != EOF) {
-    // while ((ret=fscanf(fp, "%u,%hu,%hu,%d", &ts, &x, &y, &pol_raw)) != EOF) {
+        if (before_time > 0) {
+            usleep(ts - before_time);
+        }
         pol = static_cast<bool>(pol_raw);
-        usleep(100);
+        EventTuple tup = std::make_tuple(ts, x, y, pol_raw);
         mtx.lock();
-        EventTuple tup = std::make_tuple(ts, x, y, pol);
         (*buffer).push_front(tup);
         mtx.unlock();
+        before_time = ts;
     }
     fclose(fp);
     std::cout << "[Thread1] Buffering Loop Finished!! " << std::endl;
