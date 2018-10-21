@@ -20,15 +20,13 @@ std::vector<EventTuple> readBufferOnLifetime(EventBuffer *buffer,
     mtx.lock();
     EventTuple tup = (*buffer).front();    // get first element
     int32_t starttime = std::get<0>(tup);
-    (*buffer).pop_front();                  // remove first element
     v.push_back(tup);
 
-    for (int cnt = 0; cnt < (*buffer).capacity(); cnt++) {
-        EventTuple tup = (*buffer).front();    // get first element
+    for (size_t cnt = 1; cnt < (*buffer).capacity(); cnt++) {
+        EventTuple tup = (*buffer)[cnt];    // get first element
         if (std::get<0>(tup) == 0) {
         break;
         } else if (std::get<0>(tup) > starttime - lifetime) {
-            (*buffer).pop_front();                  // remove first element
             v.push_back(tup);
         } else { break; }
     }
@@ -41,15 +39,13 @@ std::vector<EventTuple> readBufferOnNumber(EventBuffer *buffer, int number) {
 
     mtx.lock();
     EventTuple tup = (*buffer).front();    // get first element
-    (*buffer).pop_front();                  // remove first element
     v.push_back(tup);
 
-    for (int cnt = 0; cnt < (*buffer).capacity(); cnt++) {
-        EventTuple tup = (*buffer).front();    // get first element
+    for (size_t cnt = 1; cnt < (*buffer).capacity(); cnt++) {
+        EventTuple tup = (*buffer)[cnt];    // get first element
         if (std::get<0>(tup) == 0) {
         break;
         } else if (v.size() < number) {
-            (*buffer).pop_front();                  // remove first element
             v.push_back(tup);
         } else { break; }
     }

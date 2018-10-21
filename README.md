@@ -52,6 +52,12 @@ Please read the [contribution guidelines] before starting work on a pull request
 ### Summary of the guidelines:
 
 * One pull request per issue;
+* lint checker command:
+
+```
+python cpplint.py --linelength=120 --counting=detailed $( find . -name '*.hpp' -or -name '*.cpp' | grep -vE "^./examples/build/" )
+```
+
 * Choose the right base branch;
 * Include tests and documentation;
 * Clean up "oops" commits before submitting;
