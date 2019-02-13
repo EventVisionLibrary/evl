@@ -6,7 +6,6 @@ Implementation of "Fast Event-based Harris Corner Detection Exploiting the Advan
  https://www.semanticscholar.org/paper/Fast-event-based-Harris-corner-detection-exploiting-Vasco-Glover/2d57a3b949a82e2ff9d6dc37d0a53e8c1514af22
 */
 #include <iostream>
-#include <thread>
 #include <queue>
 
 #include <Eigen/Core>
@@ -19,7 +18,7 @@ Implementation of "Fast Event-based Harris Corner Detection Exploiting the Advan
 #include <cvaux.h>
 
 #include <evl/core/types.hpp>
-#include <evl/core/buffer_csv.hpp>
+#include <evl/core/store_buffer.hpp>
 #include <evl/core/read_buffer.hpp>
 #include <evl/utils/event_utils.hpp>
 
@@ -32,10 +31,11 @@ Implementation of "Fast Event-based Harris Corner Detection Exploiting the Advan
 #define NEGATIVE false
 #define HARRIS_THRESHOLD 20
 
-std::vector<cv::Point2f> EventHarrisDetector(std::queue<evl::EventTuple>* ev_slice){
-    //Reading all event data from csv and save it to queue.
+std::vector<cv::Point2f> EventHarrisDetector(
+        std::queue<evl::EventTuple>* ev_slice) {
     std::vector <cv::Point2f> corners;
-    std::deque<std::pair<int, int>> pos_queue(NUM_EVENTS+1), neg_queue(NUM_EVENTS+1);
+    std::deque<std::pair<int, int>>
+            pos_queue(NUM_EVENTS+1), neg_queue(NUM_EVENTS+1);
     cv::Mat binaryOn, binaryOff;
     cv::Mat dx, dy, dx2, dy2, dxy, dx2_, dy2_, dxy_;
     cv::Mat h;
@@ -46,15 +46,15 @@ std::vector<cv::Point2f> EventHarrisDetector(std::queue<evl::EventTuple>* ev_sli
     h = cv::getGaussianKernel(L, 1, CV_32F);
     h = h * h.t();
 
-    while(!ev_slice->empty()) {
-        //Create image from events.
+    while (!ev_slice->empty()) {
+        // Create image from events.
         evl::EventTuple event_cur = ev_slice->front();
         ev_slice->pop();
         double x = std::get<1>(event_cur);
         double y = std::get<2>(event_cur);
         double pol = std::get<3>(event_cur);
 
-        if (x <= L or x >= W - L or y <= L or y >= H - L)
+        if (x <= L || x >= W - L || y <= L || y >= H - L)
             continue;
 
         if (pol == POSITIVE) {
@@ -89,11 +89,10 @@ std::vector<cv::Point2f> EventHarrisDetector(std::queue<evl::EventTuple>* ev_sli
             double score = M.determinant() - 0.04 * (M.trace() * M.trace());
 
             if (score > HARRIS_THRESHOLD)
-                corners.push_back(cv::Point2f(x,y));
-
-        }else{
-            binaryOff.at<uchar>(y,x)=1;
-            neg_queue.push_back(std::make_pair(x,y));
+                corners.push_back(cv::Point2f(x, y));
+        } else {
+            binaryOff.at<uchar>(y, x) = 1;
+            neg_queue.push_back(std::make_pair(x , y));
             if (neg_queue.size() == (NUM_EVENTS+1)) {
                 std::pair<int, int> oldestPos = neg_queue.front();
                 binaryOff.at<uchar>(oldestPos.second, oldestPos.first) = 0;
@@ -123,15 +122,14 @@ std::vector<cv::Point2f> EventHarrisDetector(std::queue<evl::EventTuple>* ev_sli
             double score = M.determinant() - 0.04 * (M.trace() * M.trace());
 
             if (score > HARRIS_THRESHOLD)
-                corners.push_back(cv::Point2f(x,y));
+                corners.push_back(cv::Point2f(x, y));
         }
     }
 
     return corners;
 }
 
-void CornerDetection(char* fname, double lifetime){
-
+void CornerDetection(char* fname, double lifetime) {
     std::vector<evl::EventTuple> v;
     std::queue<evl::EventTuple> que;
     std::queue<evl::EventTuple> time_slice;
@@ -145,16 +143,16 @@ void CornerDetection(char* fname, double lifetime){
     double ts; double x; double y;
     double pol_raw; bool pol;
 
-    //Reading all event data from csv and save it to que.
+    // R eading all event data from csv and save it to que.
     fp = fopen(fname, "r");
     if (fp == NULL) {
         printf("%sThe file cannot be opened!\n", fname);
         return;
     }
-    int count =0;
+    int count = 0;
 
     while ((ret=fscanf(fp, "%lf %lf %lf %lf", &ts, &x, &y, &pol_raw)) != EOF) {
-        //Note: If you load .csv file, you should use "%lf, %lf, %lf %lf"
+        // Note: If you load .csv file, you should use "%lf, %lf, %lf %lf"
         pol = static_cast<bool>(pol_raw);
         evl::EventTuple tup = std::make_tuple(ts, x, y, pol);
         que.push(tup);
@@ -162,33 +160,35 @@ void CornerDetection(char* fname, double lifetime){
     }
     fclose(fp);
 
-    while(!que.empty()) {
-        //Create image from events.
+    while (!que.empty()) {
+        // Create image from events.
         start_time = std::get<0>(que.front());
         current_time = start_time;
-        while (!que.empty() and current_time < start_time + lifetime) {
+        while (!que.empty() && current_time < start_time + lifetime) {
             v.push_back(que.front());
             time_slice.push(que.front());
             current_time = std::get<0>(que.front());
             que.pop();
         }
-        img = evl::events_to_mat(v, true);
+        img = evl::convertEventsToMat(v, true);
 
-        //Harris corner detection
+        // Harris corner detection
         harris_img = img.clone();
         corners = EventHarrisDetector(&time_slice);
         std::vector<cv::Point2f>::iterator it_corner = corners.begin();
         for (; it_corner != corners.end(); ++it_corner) {
-            circle(harris_img, cv::Point(it_corner->x, it_corner->y), 2, cv::Scalar(0, 255, 0), -1);
+            circle(harris_img, cv::Point(it_corner->x, it_corner->y),
+                   2, cv::Scalar(0, 255, 0), -1);
         }
 
-        //free memory
+        // free memory
         std::vector<evl::EventTuple>().swap(v);
 
-        //Visualization
+        // Visualization
         cv::imshow("DVS", img);
         cv::imshow("Harris", harris_img);
-        cv::waitKey(3); //Note: This "3" is a magic number to show the video stream like real-time.
+        // Note: This "3" is a magic number to show like real-time.
+        cv::waitKey(3);
     }
 
     return;
@@ -196,7 +196,9 @@ void CornerDetection(char* fname, double lifetime){
 
 
 int main(int argc, char* argv[]) {
-    double lifetime = 0.01;     // Note: this value depends on the unit of input timestamp.
-    CornerDetection(argv[1], lifetime); // filename is specified with command line argument.
+    // Note: this value depends on the unit of input timestamp.
+    double lifetime = 0.01;
+    // filename is specified with command line argument.
+    CornerDetection(argv[1], lifetime);
     return 0;
 }
