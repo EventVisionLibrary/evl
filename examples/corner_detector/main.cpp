@@ -22,7 +22,6 @@ Implementation of "Fast Event-based Harris Corner Detection Exploiting the Advan
 #include <evl/core/buffer_csv.hpp>
 #include <evl/core/read_buffer.hpp>
 #include <evl/utils/event_utils.hpp>
-#include "EventHarrisDetector.h"
 
 
 #define W 240
