@@ -1,7 +1,7 @@
 # Event Vision Library (EVL)
 [![CircleCI](https://circleci.com/gh/EventVisionLibrary/evl/tree/develop.svg?style=svg&circle-token=88a46ce106424172fa3e461953f29795b6222771)](https://circleci.com/gh/EventVisionLibrary/evl/tree/develop)
 
-Open Source Computer Vision Library for Event data. Any contribution is welcomed.
+Open Source Computer Vision Library for Event-based camera and vision. Any contribution is welcomed.
 
 ## Supported devices
 
@@ -42,14 +42,10 @@ $ make
 
 ## Resources
 
-* Example: <https://github.com/EventVisionLibrary/evl/blob/master/src/test>
+* Example: <https://github.com/EventVisionLibrary/evl/tree/develop/examples>
 * Issue tracking: <https://github.com/EventVisionLibrary/evl/issues>
 
 ## Contributing
-
-Please read the [contribution guidelines] before starting work on a pull request.
-
-### Summary of the guidelines:
 
 * One pull request per issue;
 * lint checker command:
