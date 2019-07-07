@@ -42,7 +42,7 @@ namespace evl
     
     Tuple of <int32_t timestamp, uint16_t x, uint16_t y, bool polarity>.
 */
-typedef std::tuple<int32_t, uint16_t, uint16_t, bool> EventTuple;
+typedef std::tuple<double, uint16_t, uint16_t, bool> EventTuple;
 
 /*! @var   EventBuffer
     @brief Buffer of events, using boost::circular_buffer.

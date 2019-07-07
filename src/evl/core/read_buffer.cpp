@@ -1,7 +1,7 @@
 // Copyright 2018 Event Vision Library.
 #include "read_buffer.hpp"
 
-#include "unistd.h"     //  for sleep function
+#include <unistd.h>     //  for sleep function
 #include <mutex>
 #include <vector>
 
@@ -40,12 +40,12 @@ std::vector<EventTuple> readBufferOnNumber(EventBuffer *buffer, int number) {
     mtx.lock();
     EventTuple tup = (*buffer).front();    // get first element
     v.push_back(tup);
-
+    int size = v.size();
     for (size_t cnt = 1; cnt < (*buffer).capacity(); cnt++) {
         EventTuple tup = (*buffer)[cnt];    // get first element
         if (std::get<0>(tup) == 0) {
         break;
-        } else if (v.size() < number) {
+        } else if (size < number) {
             v.push_back(tup);
         } else { break; }
     }
