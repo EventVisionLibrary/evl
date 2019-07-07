@@ -1,13 +1,13 @@
 // Copyright 2018 Event Vision Library.
 #include "store_buffer.hpp"
+#include <libcaercpp/libcaer.hpp>
 
-#include "unistd.h"
+#include <unistd.h>
 #include <fstream>
 #include <iostream>
 #include <tuple>
 #include <memory>
 
-#include <libcaercpp/libcaer.hpp>
 #include "common.hpp"
 #include "initialize_davis.hpp"
 #include "shutdown.hpp"
@@ -27,14 +27,13 @@ void storeBufferFromCsv(EventBuffer *buffer, char* fname) {
     // int pol_raw; bool pol;
 
     double ts; double x; double y;
-    double pol_raw; bool pol;
+    double pol_raw;
     double before_time = 0;
 
     while ((ret=fscanf(fp, "%lf,%lf,%lf,%lf", &ts, &x, &y, &pol_raw)) != EOF) {
         if (before_time > 0) {
             usleep(ts - before_time);
         }
-        pol = static_cast<bool>(pol_raw);
         EventTuple tup = std::make_tuple(ts, x, y, pol_raw);
         mtx.lock();
         (*buffer).push_front(tup);
